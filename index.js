@@ -47,7 +47,9 @@ function playGame(){
     }
     if(computerScore<humanScore)
         console.log("You win ! "+humanScore+"-"+computerScore)
-    else
+    else if (computerScore>humanScore)
         console.log("You lose ! "+humanScore+"-"+computerScore)
+    else 
+        console.log("It's a Tie "+humanScore+"-"+computerScore)
 }
 playGame()
