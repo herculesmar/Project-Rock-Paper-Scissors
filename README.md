@@ -6,12 +6,36 @@ The game is played directly inside the browser's developer console over 5 rounds
 
 ---
 
+## Live Demo
+
+You can view and play the live project on GitHub Pages:  
+**[Rock Paper Scissors Live Preview](https://herculesmar.github.io/Project-Rock-Paper-Scissors/)**
+
+> **Note:** Since this game runs entirely in the console, you must open your browser's Developer Tools Console to view round results and game outputs!
+
+---
+
 ## Features
 
 - **Random Computer Moves:** Generates random picks using `Math.random()`.
 - **User Input Handling:** Collects user decisions via interactive browser prompts.
 - **Case-Insensitive Matchups:** Normalizes string inputs so entries like `"ROCK"`, `"rock"`, or `"RocK"` process correctly.
 - **Score Tracking:** Keeps track of round wins and determines the overall match winner after 5 rounds.
+
+---
+
+## How to Play
+
+1. Visit the **[Live Demo](https://herculesmar.github.io/Project-Rock-Paper-Scissors/)** (or open `index.html` locally).
+2. Open the **Browser Developer Tools**:
+   - **Windows / Linux:** Press `F12` or `Ctrl + Shift + I`
+   - **Mac:** Press `Cmd + Option + I`
+   - **Right-Click Method:** Right-click anywhere on the webpage and select **Inspect**.
+3. Select the **Console** tab at the top of the Developer Tools panel.
+4. Respond to the browser prompts entering `rock`, `paper`, or `scissors`.
+5. View round outcomes and final scores printed directly inside the console window.
+
+<Image src="image_agent_tag_6695097051109213331" alt="Browser developer tools highlighting the console tab location" caption="Browser Developer Tools Console view" />
 
 ---
 
