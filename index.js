@@ -54,10 +54,8 @@ function playRound(humanChoice){
     if (currentRound === 5) {
         if (cs < hs)
             comment.textContent = "You win !";
-        else if (cs > hs)
+        else
             comment.textContent = "You lose !";
-        else 
-            comment.textContent = "It's a Tie";
     }
 }
 
