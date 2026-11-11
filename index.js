@@ -1,55 +1,82 @@
+let hs = 0;
+let cs = 0;
+let currentRound = 0;
+
+const humanScore = document.querySelector(".player_score");
+const computerScore = document.querySelector(".computer_score") ;
+const roundCount = document.querySelector(".n_round");
+const comment = document.querySelector(".comment");
+const pc = document.querySelector(".player_choice")
+const pci = document.createElement("img")
+pc.appendChild(pci)
+const cc = document.querySelector(".computer_choice")
+const cci = document.createElement("img")
+cc.appendChild(cci)
+
 function getComputerChoice(){
-    const list = ["rock","paper","scissors"] 
-    const choice = Math.floor(Math.random()*3)
-    return list[choice]
+    const list = ["rock","paper","scissors"];
+    const choice = Math.floor(Math.random() * 3);
+    cci.src = `./images/${list[choice]}.jpeg`;
+    return list[choice];
 }
 
-function getHumanChoice(){
-    return choice = prompt("rock paper scissors shoot !!")
-    
-}
-function playRound(humanChoice , computerChoice){
-    humanChoice = humanChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
+function playRound(humanChoice){
+    if (currentRound >= 5) return;
+    pci.src =`./images/${humanChoice}.jpeg`
+    currentRound++;
+    roundCount.textContent = currentRound;
+
+    const computerChoice = getComputerChoice();
+    let result;
+
     if (humanChoice == computerChoice) {
-
-        console.log("It's a tie");
-        return 0;
-    }
-
-    else if ((humanChoice == "rock" && computerChoice == "paper")||(humanChoice == "paper"&&computerChoice == "scissors")||(humanChoice == "scissors" && computerChoice == "rock" ) ){
-        console.log("You lose! " + computerChoice + " beats "+ humanChoice)
-        return 1;
-    }
-    else{
-        console.log("You win ! " + humanChoice + " beats " + computerChoice)
-        return 2;
+        result = 0;
+    } else if ((humanChoice == "rock" && computerChoice == "paper") || (humanChoice == "paper" && computerChoice == "scissors") || (humanChoice == "scissors" && computerChoice == "rock")) {
+        result = 1;
+    } else {
+        result = 2;
     } 
+
+    switch(result) {
+        case 0 : 
+            currentRound--
+            break;
+        case 1 : 
+            cs++;
+            computerScore.textContent = cs;
+            break;
+        case 2 : 
+            hs++;
+            humanScore.textContent = hs;
+            break;
+    }       
+
+    if (currentRound === 5) {
+        if (cs < hs)
+            comment.textContent = "You win !";
+        else if (cs > hs)
+            comment.textContent = "You lose !";
+        else 
+            comment.textContent = "It's a Tie";
+    }
 }
 
 function playGame(){
-    var humanScore = 0;
-    var computerScore = 0 ;
-    for(let i = 0 ; i< 5 ; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        let result = playRound(humanSelection, computerSelection);
-        switch(result) {
-            case 0 : 
-                break;
-            case 1 : 
-                computerScore++ ;
-                break;
-            case 2 : 
-                humanScore ++ ;
-                break
-        }        
-    }
-    if(computerScore<humanScore)
-        console.log("You win ! "+humanScore+"-"+computerScore)
-    else if (computerScore>humanScore)
-        console.log("You lose ! "+humanScore+"-"+computerScore)
-    else 
-        console.log("It's a Tie "+humanScore+"-"+computerScore)
+    cs = 0;
+    hs = 0;
+    currentRound = 0;
+    pci.src = ""
+    cci.src = ""
+
+    humanScore.textContent = 0;
+    computerScore.textContent = 0;
+    roundCount.textContent = 0;
+    comment.textContent = "Game started! Make your move.";
 }
-playGame()
+
+document.querySelector(".rock").addEventListener("click", () => {playRound("rock"); });
+document.querySelector(".paper").addEventListener("click", () => {playRound("paper") ;});
+document.querySelector(".scissors").addEventListener("click", () => {playRound("scissors") ;});
+
+const al = document.querySelector(".play");
+al.addEventListener("click", playGame);
